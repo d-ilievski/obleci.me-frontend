@@ -1,0 +1,10 @@
+.SideDrawerToggle div{
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+.SideDrawerToggle:hover {
+    cursor: pointer;
+}

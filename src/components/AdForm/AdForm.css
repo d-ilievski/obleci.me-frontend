@@ -1,0 +1,19 @@
+.AdForm {
+    margin: 20px 40px;
+}
+
+.AdForm label{
+    display: block;
+    margin: 20px 0;
+}
+
+.AdForm input {
+    width: 400px;
+    padding: 20px 10px;
+}
+
+.AdForm textarea {
+    width: 400px;
+    height: 100px;
+    padding: 20px 10px;
+}
