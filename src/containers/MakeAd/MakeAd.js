@@ -2,25 +2,72 @@ import React, {Component} from 'react';
 import AdForm from '../../components/AdForm/AdForm';
 import classes from './MakeAd.css';
 import MakeAdMap from '../../components/MakeAdMap/MakeAdMap';
+import {geolocated} from 'react-geolocated';
+import Auxiliary from '../../hoc/Auxiliary';
 
 class MakeAd extends Component {
 
-    state = {}
+    state = {
+        lng: 21.7453,
+        lat: 41.6086,
+        isMarkerShown: false
+    }
+
+    findLocationHandler = () => {
+        if (this.props.isGeolocationAvailable) {
+            if (this.props.isGeolocationEnabled) {
+                if (this.props.coords) {
+                    this.setState({lng: this.props.coords.longitude, lat: this.props.coords.latitude, isMarkerShown: true});
+                }
+            }
+        }
+    }
+
+    setLocationHandler = (event) => {
+        this.setState({
+            lng: event
+                .latLng
+                .lng(),
+            lat: event
+                .latLng
+                .lat(),
+            isMarkerShown: true
+        });
+    }
+
+    /*componentWillReceiveProps(nextProps) {
+        if (this.props.isGeolocationAvailable) {
+            if (this.props.isGeolocationEnabled) {
+                if (this.props.coords) {
+                    this.setState({lng: nextProps.coords.longitude, lat: nextProps.coords.latitude, isMarkerShown: true});
+                }
+            }
+        }
+    }*/
 
     render() {
         return (
-            <div className={classes.MakeAd}>
-
-                <AdForm/>
-                <MakeAdMap
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
-                    loadingElement={< div style = {{ height: `100%` }}/>}
-                    containerElement={< div style = {{ height: `400px`, width: '300px' }}/>}
-                    mapElement={< div style = {{ height: `100%` }}/>}/>
-
-            </div>
+            <Auxiliary className={classes.MakeAd}>
+                <div className={classes.Row}>
+                    <AdForm/>
+                    <MakeAdMap
+                        clicked={this.setLocationHandler}
+                        isMarkerShown={this.state.isMarkerShown}
+                        lng={this.state.lng}
+                        lat={this.state.lat}/>      
+                </div>
+                <div className={classes.Row}>
+                    <button onClick={this.findLocationHandler}>Лоцирај ме!</button>
+                    <div>LAT: {this.state.lat} LNG: {this.state.lng}</div>
+                </div>
+            </Auxiliary>
         );
     }
 }
 
-export default MakeAd;
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false
+    },
+    userDecisionTimeout: 5000
+})(MakeAd);

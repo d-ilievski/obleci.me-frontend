@@ -1,3 +1,20 @@
 .MakeAd {
+    margin: auto;
+}
+
+.Row {
     display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.Row button {
+        width: 400px;
+        height: 50px;
+        background: #66fcf1;
+        display: block;
+        margin: 15px auto;
+        border: none;
 }

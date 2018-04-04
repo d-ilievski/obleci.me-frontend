@@ -16,6 +16,7 @@ const adForm = (props) => {
                Адреса:          
             </label>
             <input type="text"/>
+
         </form>
     );
 };
