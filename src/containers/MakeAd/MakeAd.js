@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AdForm from '../../components/AdForm/AdForm';
 import classes from './MakeAd.css';
 import MakeAdMap from '../../components/MakeAdMap/MakeAdMap';
-import {geolocated} from 'react-geolocated';
 import Auxiliary from '../../hoc/Auxiliary';
 
 class MakeAd extends Component {
@@ -10,17 +9,8 @@ class MakeAd extends Component {
     state = {
         lng: 21.7453,
         lat: 41.6086,
-        isMarkerShown: false
-    }
-
-    findLocationHandler = () => {
-        if (this.props.isGeolocationAvailable) {
-            if (this.props.isGeolocationEnabled) {
-                if (this.props.coords) {
-                    this.setState({lng: this.props.coords.longitude, lat: this.props.coords.latitude, isMarkerShown: true});
-                }
-            }
-        }
+        isMarkerShown: false,
+        map: null
     }
 
     setLocationHandler = (event) => {
@@ -35,15 +25,19 @@ class MakeAd extends Component {
         });
     }
 
-    /*componentWillReceiveProps(nextProps) {
-        if (this.props.isGeolocationAvailable) {
-            if (this.props.isGeolocationEnabled) {
-                if (this.props.coords) {
-                    this.setState({lng: nextProps.coords.longitude, lat: nextProps.coords.latitude, isMarkerShown: true});
-                }
-            }
+    componentDidMount() {
+        if (navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const coords = pos.coords;
+                this.setState({
+                    lng: coords.longitude,
+                    lat: coords.latitude,
+                    isMarkerShown: true
+                });
+            })
         }
-    }*/
+    }
+    
 
     render() {
         return (
@@ -51,23 +45,17 @@ class MakeAd extends Component {
                 <div className={classes.Row}>
                     <AdForm/>
                     <MakeAdMap
-                        clicked={this.setLocationHandler}
-                        isMarkerShown={this.state.isMarkerShown}
-                        lng={this.state.lng}
-                        lat={this.state.lat}/>      
+                    clicked={this.setLocationHandler}
+                    isMarkerShown={this.state.isMarkerShown}
+                    lng={this.state.lng}
+                    lat={this.state.lat}/>
                 </div>
                 <div className={classes.Row}>
-                    <button onClick={this.findLocationHandler}>Лоцирај ме!</button>
-                    <div>LAT: {this.state.lat} LNG: {this.state.lng}</div>
+                    <button disabled>ПРОДОЛЖИ ></button>
                 </div>
             </Auxiliary>
         );
     }
 }
 
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false
-    },
-    userDecisionTimeout: 5000
-})(MakeAd);
+export default MakeAd;

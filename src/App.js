@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ClientLayout from './hoc/ClientLayout/ClientLayout';
 import MakeAd from './containers/MakeAd/MakeAd';
+import AddItems from './containers/AddItems/AddItems';
 
 class App extends Component {
 
@@ -9,7 +10,8 @@ class App extends Component {
     return (
       <div className="App">
         <ClientLayout>
-          <MakeAd />
+          {/*<MakeAd />*/}
+          <AddItems />
         </ClientLayout>
         
       </div>

@@ -9,7 +9,6 @@ class ClientLayout extends Component {
         return (
             <Auxiliary>
                 <Toolbar />
-                <div>SIDE DRAWER</div>
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

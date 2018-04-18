@@ -29,7 +29,7 @@ const makeAdMap = compose(
     <div className={classes.MakeAdMap}>
       <GoogleMap
         ref={(map) => map && map.panTo({lat: props.lat, lng: props.lng})}
-        defaultZoom={11}
+        defaultZoom={15}
         defaultCenter={{
           lat: props.lat,
           lng: props.lng
