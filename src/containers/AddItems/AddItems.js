@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary';
+import AddItemsSidebar from '../../components/AddItemsSidebar/AddItemsSidebar';
+import ItemsList from '../../components/ItemsList/ItemsList';
 
 class AddItems extends Component {
 
@@ -9,11 +11,8 @@ class AddItems extends Component {
     render() {
         return (
             <Auxiliary>
-                <div>Which Ad</div>
-                <div>+</div>
-                <div>PLACE TO SHOW ALL ITEMS OF THE AD</div>
-                <h6>dialog/prompt to add items</h6>
-                <div> PPP-SAVE-PPP </div>
+                <AddItemsSidebar />
+                <ItemsList />
             </Auxiliary>
         );
     }

@@ -1,0 +1,27 @@
+.ItemsList {
+    margin-left: 370px;
+    width: 70%;
+    height: 85vh;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.Content {
+    width: 95%;
+    height: 90%;
+    overflow: scroll;
+    margin: 20px auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    display: none;   
+}
+
+::-webkit-scrollbar-thumb {
+    background: #66fcf1;
+    border-radius: 10px;
+}
