@@ -1,23 +1,24 @@
 .AddItemsSidebar {
     width: 320px;
+    max-width: 70%;
     color: white;
     background: #0b0c10;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
     align-content: center;
+    box-sizing: border-box;
     color: #66fcf1;
-    padding: 0 20px; 
+    padding: 70px 16px;
+    overflow: scroll;
 }
 
 .AddItemsSidebar select {
     width: 100%;
     height: 40px;
     border: none;
+    border-radius: 10px;
     margin: 20px 0;
     padding: 0 20px;
 }

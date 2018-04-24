@@ -43,6 +43,11 @@ const makeAdMap = compose(
           lng: props.lng
         }}/>
         : null}
+
+        <Marker position={{
+          lat: props.lat,
+          lng: props.lng
+        }}/>
       </GoogleMap>
     </div>
   )

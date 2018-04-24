@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import ClientLayout from './hoc/ClientLayout/ClientLayout';
-//import MakeAd from './containers/MakeAd/MakeAd';
+import MakeAd from './containers/MakeAd/MakeAd';
 import AddItems from './containers/AddItems/AddItems';
+import {Route} from "react-router-dom";
+import Home from './containers/Home/Home';
 
 class App extends Component {
 
@@ -10,10 +12,10 @@ class App extends Component {
     return (
       <div className="App">
         <ClientLayout>
-          {/*<MakeAd />*/}
-          <AddItems />
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/ad/create" component={MakeAd}/>
+          <Route exact path="/ad/addItems" component={AddItems}/>
         </ClientLayout>
-        
       </div>
     );
   }

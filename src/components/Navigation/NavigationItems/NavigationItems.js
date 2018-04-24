@@ -2,14 +2,15 @@ import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.css';
 
+
 const navigationItems = (props) => {
     return (
         <ul className={classes.NavigationItems}>
-           <NavigationItem link="/" active>
+           <NavigationItem link="/ad/create">
             Подари
            </NavigationItem>
            
-           <NavigationItem link="/">
+           <NavigationItem link="/ad/addItems">
             Мои огласи
            </NavigationItem>
 

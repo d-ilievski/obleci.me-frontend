@@ -9,8 +9,7 @@ class MakeAd extends Component {
     state = {
         lng: 21.7453,
         lat: 41.6086,
-        isMarkerShown: false,
-        map: null
+        isMarkerShown: false
     }
 
     setLocationHandler = (event) => {

@@ -1,6 +1,36 @@
 .Item {
     width: 97%;
-    border: 1px solid #66fcf1;
+    height: 115px auto;
+    margin: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border-bottom: 1px solid grey;
+}
+
+.Item a{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.Thumbnail {
+    width: 100px;
     height: 100px;
-    margin: 5px;
+    margin-right: 50px; 
+}
+
+.Link {
+    text-decoration: none;
+    color: black;
+}
+
+.Link:hover {
+    text-decoration: none;
+    color: grey;
+}
+.Options {
+    margin: 10px;
 }

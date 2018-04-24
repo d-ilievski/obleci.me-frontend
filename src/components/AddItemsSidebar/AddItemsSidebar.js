@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './AddItemsSidebar.css';
+import AdInfo from './AdInfo/AdInfo';
 
 const addItemsSidebar = (props) => {
     return (
@@ -15,6 +16,7 @@ const addItemsSidebar = (props) => {
                 <option>Оглас 3</option>
                 <option>Оглас 4</option>
             </select>
+            <AdInfo />
             <button className={classes.AddItem}>Додади предмет</button>
             <button className={classes.Save}>Зачувај</button>
         </div>
