@@ -3,6 +3,7 @@ import AdForm from '../../components/AdForm/AdForm';
 import classes from './MakeAd.css';
 import MakeAdMap from '../../components/MakeAdMap/MakeAdMap';
 import Auxiliary from '../../hoc/Auxiliary';
+import withAuth from '../../components/Authentication/WithAuth/WithAuth';
 
 class MakeAd extends Component {
 
@@ -49,12 +50,9 @@ class MakeAd extends Component {
                     lng={this.state.lng}
                     lat={this.state.lat}/>
                 </div>
-                <div className={classes.Row}>
-                    <button disabled>ПРОДОЛЖИ ></button>
-                </div>
             </Auxiliary>
         );
     }
 }
 
-export default MakeAd;
+export default withAuth(MakeAd);

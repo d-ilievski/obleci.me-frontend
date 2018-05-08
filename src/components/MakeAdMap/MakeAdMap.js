@@ -12,7 +12,7 @@ const makeAdMap = compose(
       height: `100%`
     }}/>,
     containerElement: <div style={{
-      height: `400px`,
+      height: `500px`,
       width: '50%',
       margin: '20px 40px'
     }}/>,

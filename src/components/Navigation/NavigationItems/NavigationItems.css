@@ -4,3 +4,24 @@
     height: 100%;
     padding: 10px 20px;
 }
+
+.Logout {
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 16px 10px;
+}
+
+.Logout button{
+    color: white;
+    background: none;
+    border: none;
+}
+
+.Logout button:hover {
+    cursor: pointer;
+    color: #66fcf1;
+}

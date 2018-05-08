@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary';
 import AddItemsSidebar from '../../components/AddItemsSidebar/AddItemsSidebar';
 import ItemsList from '../../components/ItemsList/ItemsList';
+import withAuth from '../../components/Authentication/WithAuth/WithAuth';
 
 class AddItems extends Component {
 
@@ -18,4 +19,4 @@ class AddItems extends Component {
     }
 }
 
-export default AddItems;
+export default withAuth(AddItems);

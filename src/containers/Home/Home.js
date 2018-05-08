@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
+import withAuth from '../../components/Authentication/WithAuth/WithAuth';
 
-const home = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+class Home extends Component {
 
-export default home;
+    render() {
+        return (
+            <div>
+                
+            </div>
+        );
+    }
+
+}
+
+export default withAuth(Home);
