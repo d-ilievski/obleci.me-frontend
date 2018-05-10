@@ -8,7 +8,7 @@ class AddItems extends Component {
 
     state = {
         data : [],
-        activeAdId : 0,
+        activeAdId : 1,
     }
     
     componentDidMount() {
@@ -22,15 +22,19 @@ class AddItems extends Component {
             }).then(res => {
                 return res.json();
             }).then(json => {
-                this.setState({data : json});
-            });
+                this.setState({data : json, activeAdId : (json.length-1)});
+            }); 
         }.bind(this), 500);
+    }
+
+    optionHandler = key => {
+        this.setState({activeAdId : key});
     }
 
     render() {
         return (
             <Auxiliary>
-                <AddItemsSidebar data={this.state.data} active={this.state.active}/>
+                <AddItemsSidebar Data={this.state.data} optionHandler={this.optionHandler} selected={this.state.activeAdId}/>
                 <ItemsList />
             </Auxiliary>
         );

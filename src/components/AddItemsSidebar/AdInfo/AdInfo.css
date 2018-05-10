@@ -1,5 +1,9 @@
 .AdInfo {
     color: white;
     margin: 20px 0;
-    
+}
+
+.customSpan {
+    padding: 10px;
+    border-right: solid 1px grey;
 }

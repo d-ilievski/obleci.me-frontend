@@ -3,6 +3,21 @@ import classes from './AddItemsSidebar.css';
 import AdInfo from './AdInfo/AdInfo';
 
 const addItemsSidebar = (props) => {
+
+    const renderOptions = Object
+        .keys(props.Data)
+        .reverse()
+        .map(k => {
+            //console.log(props.Data[k].n);
+            return <option data-key={k} key={k}>{props.Data[k].n}</option>
+        });
+
+    const optionOnChangeHandler = (event) => {
+        const selectedIndex = event.target.options.selectedIndex;
+
+        props.optionHandler(Number(event.target.options[selectedIndex].getAttribute('data-key')));
+    }
+
     return (
         <div className={classes.AddItemsSidebar}>
             <div className={classes.Description}>
@@ -10,13 +25,10 @@ const addItemsSidebar = (props) => {
                     Одбери го огласот на кој сакаш да додадеш предмет.
                 </p>
             </div>
-            <select>
-                <option>Оглас 1</option>
-                <option>Оглас 2</option>
-                <option>Оглас 3</option>
-                <option>Оглас 4</option>
+            <select onChange={optionOnChangeHandler}>
+                {renderOptions}
             </select>
-            <AdInfo />
+            <AdInfo ad={props.Data[props.selected]}/>
             <button className={classes.AddItem}>Додади предмет</button>
             <button className={classes.Save}>Зачувај</button>
         </div>

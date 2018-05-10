@@ -25,3 +25,23 @@
     cursor: pointer;
     color: #66fcf1;
 }
+
+.Home {
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 16px 10px;
+    text-decoration: none;
+}
+
+.Icon {
+    color: white;
+    text-decoration: none;
+}
+
+.Icon:hover {
+    color: #66fcf1;
+}
