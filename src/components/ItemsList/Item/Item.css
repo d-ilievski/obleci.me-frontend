@@ -1,11 +1,10 @@
 .Item {
-    width: 97%;
     height: 115px auto;
     margin: 15px;
     padding-bottom: 15px;
     display: flex;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     box-sizing: border-box;
     border-bottom: 1px solid grey;
 }
@@ -13,7 +12,8 @@
 .Item a{
     display: flex;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    word-wrap: row wrap;
 }
 
 .Thumbnail {
@@ -22,15 +22,19 @@
     margin-right: 50px; 
 }
 
-.Link {
-    text-decoration: none;
-    color: black;
-}
-
-.Link:hover {
-    text-decoration: none;
+.Toggle { 
+    padding: 0;
+    border: none;
+    background: none;
+    width: 30px;
+    height: 30px;
+    display: block;
     color: grey;
 }
-.Options {
-    margin: 10px;
+.Toggle:hover { 
+    cursor: pointer;
+}
+
+.Available {
+    color: green;
 }

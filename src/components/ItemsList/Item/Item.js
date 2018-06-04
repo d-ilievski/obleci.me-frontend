@@ -1,28 +1,33 @@
 import React from 'react';
 import classes from './Item.css';
 import ItemInfo from './ItemInfo/ItemInfo';
-//import Auxiliary from '../../../hoc/Auxiliary';
+import ToggleOn from 'react-icons/lib/fa/toggle-on'
+import ToggleOff from 'react-icons/lib/fa/toggle-off';
+import Trash from 'react-icons/lib/fa/trash-o';
 
 const item = (props) => {
+
     return (
 
         <div className={classes.Item}>
-            <a href="/" className={classes.Link}>
+            <a className={classes.Link}>
                 <img
-                    src="http://via.placeholder.com/350x350"
-                    alt="/"
+                    src={props.Data.ip}
+                    alt="Сликата не е достапна."
                     className={classes.Thumbnail}/>
-                <ItemInfo/>
+                <ItemInfo Data={props.Data}/>
             </a>
-            <a href="/" className={classes.Link}>
-                <img
-                    src="https://image.flaticon.com/icons/svg/18/18297.svg"
-                    alt="/"
-                    style={{
-                    width: "20px",
-                    height: "20px"
-                }}/>
-            </a>
+            <div>
+                {props.Data.s === 'AVAILABLE'
+                    ? <ToggleOn
+                            onClick={() => props.toggleAvailable(props.Data.id, "NOT_AVAILABLE")}
+                            className={[classes.Available, classes.Toggle].join(" ")}/>
+                    : <ToggleOff
+                        onClick={() => props.toggleAvailable(props.Data.id, "AVAILABLE")}
+                        className={[classes.Unavailable, classes.Toggle].join(" ")}/>
+                }
+                <Trash onClick={() => props.toggleAvailable(props.Data.id, "DELETED")} className={classes.Toggle}/>
+            </div>
         </div>
 
     );

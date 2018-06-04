@@ -12,6 +12,7 @@
     color: #66fcf1;
     padding: 70px 16px;
     overflow: scroll;
+    padding-top: 80px;
 }
 
 .AddItemsSidebar select {
@@ -34,7 +35,6 @@
     background: black;
     font-size: 1.1em;
     color: #66fcf1;
-    margin: 40px 0;
 }
 
 .Save {
@@ -49,4 +49,9 @@
 .Description {
     width: 100%;
     text-align: center;
+}
+
+.Disabled {
+    color: grey;
+    cursor: auto;
 }

@@ -1,0 +1,12 @@
+.LocalAdsSidebar {
+    width: 20%;
+    height: 100vh;
+    color: white;
+    background: #0b0c10;
+    align-content: center;
+    box-sizing: border-box;
+    color: #66fcf1;
+    padding: 70px 16px;
+    overflow: scroll;
+    padding-top: 80px;
+}

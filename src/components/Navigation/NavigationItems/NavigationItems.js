@@ -27,7 +27,7 @@ const navigationItems = (props) => {
                 Мои огласи
             </NavigationItem>
 
-            <NavigationItem link="/ad/all">
+            <NavigationItem link="/localAds">
                 Локални огласи
             </NavigationItem>
 

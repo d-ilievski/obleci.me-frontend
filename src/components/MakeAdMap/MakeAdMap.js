@@ -1,5 +1,5 @@
 import React from 'react';
-import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import classes from './MakeAdMap.css';
 import {compose, withProps} from "recompose";
 
@@ -21,8 +21,6 @@ const makeAdMap = compose(
       }}/>
   }),
 
-  withScriptjs,
-
   withGoogleMap)(props => {
 
   return (
@@ -43,11 +41,6 @@ const makeAdMap = compose(
           lng: props.lng
         }}/>
         : null}
-
-        <Marker position={{
-          lat: props.lat,
-          lng: props.lng
-        }}/>
       </GoogleMap>
     </div>
   )
