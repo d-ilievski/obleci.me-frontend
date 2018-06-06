@@ -17,7 +17,7 @@ const adForm = (props) => {
             </label>
             <input type="text" onChange={props.addressChange}/>
             
-            <input value="ПРОДОЛЖИ >" className={classes.SubmitBtn} type="submit"/>
+            <input value="ПРОДОЛЖИ" className={classes.SubmitBtn} type="submit"/>
         </form>
     );
 };

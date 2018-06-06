@@ -4,7 +4,8 @@ import AddItemsSidebar from '../../components/AddItemsSidebar/AddItemsSidebar';
 import ItemsList from '../../components/ItemsList/ItemsList';
 import withAuth from '../../components/Authentication/WithAuth/WithAuth';
 import Modal from '../../components/Modal/Modal';
-//import classes from '../../containers/AddItems/AddItems.css';
+import classes from '../../containers/AddItems/AddItems.css';
+import UploadIcon from 'react-icons/lib/fa/upload';
 
 class AddItems extends Component {
 
@@ -92,6 +93,7 @@ class AddItems extends Component {
         var data = new FormData();
         data.append('file', event.target.files[0]);
         data.append('aId', this.state.data[this.state.activeAdId].id);
+        this.setState({itemImage: null});
 
         fetch(`http://localhost:8080/ad/item/uploadImg`, {
             method: 'POST',
@@ -166,6 +168,8 @@ class AddItems extends Component {
                 modalShow: !prevState.modalShow
             }
         });
+
+        this.setState({itemImage: null});
     }
 
     toggleItemAvailableHandler = (id, status) => {
@@ -219,20 +223,52 @@ class AddItems extends Component {
             <Auxiliary>
                 <Modal show={this.state.modalShow} toggleModal={this.toggleAddItemModalHandler}>
                     <form onSubmit={this.addItemHandler}>
-                        <label>
+                        <label className={classes.Label}>
                             Име на предметот:
                         </label>
-                        <input type="text" onChange={this.itemNameChangeHandler}/>
-                        <label>
+                        <input
+                            autoFocus
+                            maxLength="254"
+                            type="text"
+                            className={classes.Input}
+                            onChange={this.itemNameChangeHandler}/>
+                        <label className={classes.Label}>
                             Опис:
                         </label>
-                        <textarea onChange={this.itemDescriptionChangeHandler}/>
-                        <label>
+                        <textarea
+                            maxLength="254"
+                            className={classes.Input}
+                            onChange={this.itemDescriptionChangeHandler}/>
+                        <label className={classes.Label}>
                             Слика од предметот:
                         </label>
-                        <input type="file" onChange={this.imageUploadHandler}/>
-                        <input value="Додади" type="submit"/>
-                        <button onClick={this.toggleAddItemModalHandler}>Назад</button>
+
+                        <label
+                            htmlFor='file-upload'
+                            style={{
+                            margin: '10px',
+                            display: 'block',
+                            cursor: 'pointer'
+                        }}>
+                            <UploadIcon/>
+                            Одбери слика {this.state.itemImage !== null
+                                ? <img
+                                        style={{
+                                        maxWidth: '100%'
+                                    }}
+                                        src={this.state.itemImage}
+                                        alt="Сликата не е достапна."/>
+                                : null}
+                        </label>
+                        <input
+                            id="file-upload"
+                            style={{
+                            display: 'none'
+                        }}
+                            onChange={this.imageUploadHandler}type="file"/>
+                        <div className={classes.ButtonRow}>
+                            <input value="Додади" type="submit"/>
+                        </div>
                     </form>
                 </Modal>
                 <AddItemsSidebar

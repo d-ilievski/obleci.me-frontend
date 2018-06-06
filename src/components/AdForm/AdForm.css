@@ -14,15 +14,18 @@
 
 .AdForm textarea {
     width: 400px;
-    height: 100px;
+    max-width: 400px;
+    height: 80px;
     padding: 20px 10px;
 }
 
 .SubmitBtn {
     width: 400px;
-    height: 50px;
-    background: #66fcf1;
-    margin: 15px auto;
     border: none;
+    color: #66fcf1;
+    background: #0b0c10;
+    font-size: 1.1em;
+    cursor: pointer;
     display: block;
+    margin: 20px auto 0 auto;
 }

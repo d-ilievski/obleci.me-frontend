@@ -32,6 +32,7 @@ const makeAdMap = compose(
           lat: props.lat,
           lng: props.lng
         }}
+        mapTypeId='hybrid'
         onClick={props.clicked}
       >
 

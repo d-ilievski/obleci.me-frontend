@@ -39,7 +39,14 @@ class LocalAds extends Component {
             }
             return res.json();
         }).then(json => {
-            this.setState({localAds : json})
+            var transformed = [];
+            Object.keys(json).map(k => {
+                if(json[k].active === 'ACTIVE') {
+                    transformed.push(json[k]);
+                }
+                return null;
+            })
+            this.setState({localAds : transformed})
         }).catch(error => {
             console.log(error);
         });

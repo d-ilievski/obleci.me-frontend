@@ -11,10 +11,11 @@ const item = (props) => {
 
         <div className={classes.Item}>
             <a className={classes.Link}>
-                <img
-                    src={props.Data.ip}
-                    alt="Сликата не е достапна."
-                    className={classes.Thumbnail}/>
+                <div className={classes.Thumbnail}>
+                    <img
+                        src={props.Data.ip}
+                        alt="Сликата не е достапна."/>
+                </div>
                 <ItemInfo Data={props.Data}/>
             </a>
             <div>
@@ -25,8 +26,10 @@ const item = (props) => {
                     : <ToggleOff
                         onClick={() => props.toggleAvailable(props.Data.id, "AVAILABLE")}
                         className={[classes.Unavailable, classes.Toggle].join(" ")}/>
-                }
-                <Trash onClick={() => props.toggleAvailable(props.Data.id, "DELETED")} className={classes.Toggle}/>
+}
+                <Trash
+                    onClick={() => props.toggleAvailable(props.Data.id, "DELETED")}
+                    className={classes.Toggle}/>
             </div>
         </div>
 

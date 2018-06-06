@@ -19,7 +19,14 @@
 .Thumbnail {
     width: 100px;
     height: 100px;
-    margin-right: 50px; 
+    margin-right: 50px;
+    text-align: center;
+}
+
+.Thumbnail img {
+    width: auto;
+    height: 100%;
+    max-width: 100px;
 }
 
 .Toggle { 
