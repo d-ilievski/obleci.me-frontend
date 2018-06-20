@@ -13,11 +13,9 @@ const localAdsMap = compose(withProps({
   loadingElement: <div style={{
     height: `100%`
   }}/>,
-  containerElement: <div
-    style={{
+  containerElement: <div style={{
     height: `0 100%`,
-    width: '80%',
-    marginTop: '56px'
+    width: '70%'
   }}/>,
   mapElement: <div style={{
       height: `100%`
@@ -39,7 +37,28 @@ const localAdsMap = compose(withProps({
     this.interval = null;
 
     setTimeout(() => {
-      console.log(this.props.localAds.length)
+      //console.log(this.props.localAds.length)
+      if (this.props.localAds.length > 0) {
+        DirectionsService.route({
+          origin: new google
+            .maps
+            .LatLng(this.props.originLat, this.props.originLng),
+          destination: new google
+            .maps
+            .LatLng(this.props.localAds[0].lat, this.props.localAds[0].lng),
+          travelMode: google.maps.TravelMode.WALKING
+        }, (result, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            this.setState({directions: result, counter: 0})
+            this
+              .props
+              .activeAdHandler(0);
+          } else {
+            console.error(`error fetching directions ${result}`);
+          }
+        });
+      }
+
       if (this.props.localAds.length > 1) {
         this.interval = setInterval(() => {
           DirectionsService.route({
@@ -57,8 +76,21 @@ const localAdsMap = compose(withProps({
               console.error(`error fetching directions ${result}`);
             }
           });
+          this
+            .props
+            .activeAdHandler(this.state.activeAd);
+          setTimeout(() => {
+            this
+              .props
+              .scroll();
+          }, 7500);
           if (this.props.localAds.length - 1 === this.state.activeAd) {
-            this.setState({activeAd: 0});
+            this.setState(prevState => {
+              return {
+                activeAd: 0,
+                counter: prevState.counter + 1
+              }
+            });
           } else {
             this.setState(prevState => {
               return {
@@ -66,7 +98,15 @@ const localAdsMap = compose(withProps({
               }
             });
           }
-        }, 5000);
+
+          if (this.state.counter === 3) {
+            setTimeout(() => {
+              window
+                .location
+                .reload();
+            }, 14500)
+          }
+        }, 15000);
       } else if (this.props.localAds.length === 1) {
         DirectionsService.route({
           origin: new google
@@ -79,12 +119,15 @@ const localAdsMap = compose(withProps({
         }, (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
             this.setState({directions: result})
+            this
+              .props
+              .activeAdHandler(0);
           } else {
             console.error(`error fetching directions ${result}`);
           }
         });
       }
-    }, 1000);
+    }, 5000);
 
     this.setState({interval: this.interval});
   }
@@ -115,6 +158,8 @@ const localAdsMap = compose(withProps({
         options={{
         disableDefaultUI: true
       }}>
+      
+        {renderMarkers}
 
         {props.isMarkerShown
           ? <Marker
@@ -124,8 +169,6 @@ const localAdsMap = compose(withProps({
             }}
               icon={iconCenter}/>
           : null}
-
-        {renderMarkers}
 
         <DirectionsRenderer
           directions={props.directions}

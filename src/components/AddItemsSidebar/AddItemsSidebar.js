@@ -4,19 +4,15 @@ import AdInfo from './AdInfo/AdInfo';
 
 class AddItemsSidebar extends Component {
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.Data !== {
-            ...this.props.Data
-        }) 
-            return true;
-        return false;
-    }
-
     optionOnChangeHandler = (event) => {
         const selectedIndex = event.target.options.selectedIndex;
         this
             .props
             .optionHandler(Number(event.target.options[selectedIndex].getAttribute('data-key')));
+    }
+
+    forceUpdateHandler = () => {
+        this.forceUpdate();
     }
 
     render() {

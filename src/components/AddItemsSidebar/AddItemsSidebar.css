@@ -11,7 +11,7 @@
     box-sizing: border-box;
     color: #66fcf1;
     padding: 70px 16px;
-    overflow: scroll;
+    overflow: hidden;
     padding-top: 80px;
 }
 
@@ -35,6 +35,7 @@
     background: black;
     font-size: 1.1em;
     color: #66fcf1;
+    
 }
 
 .Save {

@@ -4,10 +4,11 @@ import ClientLayout from './hoc/ClientLayout/ClientLayout';
 import MakeAd from './containers/MakeAd/MakeAd';
 import AddItems from './containers/AddItems/AddItems';
 import {Route} from "react-router-dom";
-import Home from './containers/Home/Home';
 import Login from './containers/Login/Login';
 import AuthService from './components/Authentication/AuthService/AuthService';
-import LocalAds from './containers/LocalAds/LocalAds';
+import KioskLayout from './hoc/KioskLayout/KioskLayout';
+import {BrowserRouter} from 'react-router-dom';
+import LocalAdsClient from './containers/LocalAdsClient/LocalAdsClient';
 
 class App extends Component {
 
@@ -49,7 +50,11 @@ class App extends Component {
   renderAddItems = props => {
     return <AddItems logoutHandler={this.handleLogout} {...props}/>
   }
-  
+
+  renderKioskLayout = props => {
+    return <KioskLayout {...props}/>
+  }
+
   render() {
 
     const renderLoginPage = props => {
@@ -59,23 +64,29 @@ class App extends Component {
         loginStateHandler={this.loginStateHandler}
         {...props}/>
     }
-
     return (
       <div className="App">
-        <ClientLayout
-          handleLogout={this.handleLogout}
-          navbarShow={this.state.loggedIn}
-          loginStateHandler={this.loginStateHandler}>
-          <Route exact path="/" component={Home}/>
+        <BrowserRouter>
+          <ClientLayout
+            handleLogout={this.handleLogout}
+            navbarShow={this.state.loggedIn}
+            loginStateHandler={this.loginStateHandler}>
+            <Route exact path="/" component={LocalAdsClient}/>
 
-          <Route exact path="/login" render={renderLoginPage}/>
+            <Route exact path="/login" render={renderLoginPage}/>
 
-          <Route exact path="/ad/create" component={MakeAd}/>
+            <Route exact path="/ad/create" component={MakeAd}/>
 
-          <Route exact path="/ad/addItems" component={() => this.renderAddItems(this.props)}/>
+            <Route
+              exact
+              path="/ad/addItems"
+              component={() => this.renderAddItems(this.props)}/>
 
-          <Route exact path="/localAds" component={LocalAds}/>
-        </ClientLayout>
+            <Route exact path="/localAds" component={LocalAdsClient}/>
+
+            <Route exact path="/kiosk" component={() => this.renderKioskLayout(this.props)}/>
+          </ClientLayout>
+        </BrowserRouter>
       </div>
     );
   }

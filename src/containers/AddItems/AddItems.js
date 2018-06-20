@@ -33,7 +33,7 @@ class AddItems extends Component {
             .logoutHandler();
     }
 
-    fetchAdsHandler = () => {
+    fetchAdsHandler = (rel) => {
         fetch(`http://localhost:8080/ad/myAds`, {
             method: 'GET',
             headers: {
@@ -46,10 +46,16 @@ class AddItems extends Component {
             }
             return res.json();
         }).then(json => {
-            this.setState({
-                data: json,
-                activeAdId: (json.length - 1)
-            });
+            if (!rel) {
+                this.setState({
+                    data: json,
+                    activeAdId: (json.length - 1)
+                });
+            } else {
+                this.setState({
+                    data: json
+                });
+            }
             this.fetchItemsHandler(json.length - 1);
         }).catch(error => {
             console.log(error);
@@ -59,7 +65,7 @@ class AddItems extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            this.fetchAdsHandler();
+            this.fetchAdsHandler(false);
         }, 300);
     }
 
@@ -123,7 +129,7 @@ class AddItems extends Component {
     }
 
     addItemHandler = (event) => {
-        //event.preventDefault();
+        event.preventDefault();
 
         fetch(`http://localhost:8080/ad/addItem`, {
             method: 'POST',
@@ -152,10 +158,10 @@ class AddItems extends Component {
                 return res.json();
             }).then(data => {
                 newData[this.state.activeAdId].active = data.status;
-            });
-
-            this.setState(prevState => {
-                return ({data: newData});
+                
+                this.setState(prevState => {
+                    return ({data: newData});
+                });
             });
         }).catch(error => {
             console.log(error);
@@ -205,13 +211,13 @@ class AddItems extends Component {
                 return res.json();
             }).then(data => {
                 newData[this.state.activeAdId].active = data.status;
+                this.setState(prevState => {
+                    return ({itemData: newItemData, data: newData});
+                });
             });
 
-            this.setState(prevState => {
-                return ({itemData: newItemData, data: newData});
-            });
-
-            this.fetchItemsHandler(this.state.activeAdId);
+            if(status === "DELETED")
+                this.fetchItemsHandler(this.state.activeAdId);
 
         }).catch(error => {
             console.log(error);

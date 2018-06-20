@@ -14,3 +14,12 @@
     z-index: 90;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
+
+.Logo {
+    height: 70%;
+    width: auto;
+}
+
+.Logo img {
+    height: 100%;
+}

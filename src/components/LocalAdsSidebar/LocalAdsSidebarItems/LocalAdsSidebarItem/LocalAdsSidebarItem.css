@@ -1,0 +1,25 @@
+.LocalAdsSidebarItem {
+    width: 100%;
+}
+
+.ItemContainer {
+    display: flex;
+}
+
+.Thumbnail {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.Thumbnail img {
+    width: auto;
+    height: 100%;
+    max-width: 100px;
+}
+
+.ItemName {
+    font-size: 1.25em;
+    font-weight: bold;
+}
